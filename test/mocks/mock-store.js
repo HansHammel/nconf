@@ -10,8 +10,8 @@ var util = require('util'),
     nconf = require('../../lib/nconf');
 
 var Mock = nconf.Mock = function () {
-  events.EventEmitter.call(this);
-  this.type = 'mock';
+    events.EventEmitter.call(this);
+    this.type = 'mock';
 };
 
 // Inherit from Memory store.
@@ -24,15 +24,15 @@ util.inherits(Mock, events.EventEmitter);
 // Waits `1000ms` and then calls the callback and emits the `save` event.
 //
 Mock.prototype.save = function (value, callback) {
-  if (!callback && typeof value === 'function') {
-    callback = value;
-    value = null;
-  }
-  
-  var self = this;
-  
-  setTimeout(function () {
-    self.emit('save');
-    callback();
-  }, 1000);
+    if (!callback && typeof value === 'function') {
+        callback = value;
+        value = null;
+    }
+
+    var self = this;
+
+    setTimeout(function () {
+        self.emit('save');
+        callback();
+    }, 1000);
 };

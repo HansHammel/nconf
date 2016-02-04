@@ -13,8 +13,8 @@ var vows = require('vows'),
     nock = require('nock'),
     store,
     cluster = [
-        { host: '127.0.0.1', port: 4001 },
-        { host: '127.0.0.1', port: 4002 }
+        {host: '127.0.0.1', port: 4001},
+        {host: '127.0.0.1', port: 4002}
     ];
 
 // stub the reuests to etcd

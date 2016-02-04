@@ -4,7 +4,7 @@
  * (C) 2011, Nodejitsu Inc.
  *
  */
- 
+
 var nconf = require('../../../lib/nconf').argv().env();
 
 process.stdout.write(nconf.get('something'));

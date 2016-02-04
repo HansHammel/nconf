@@ -1,9 +1,9 @@
 var nconf = require('./lib/nconf'),
-    path  = require('path');
+    path = require('path');
 
 var cluster = [
-  { host: '127.0.0.1', port: 4001 },
-  { host: '127.0.0.1', port: 4002 }
+    {host: '127.0.0.1', port: 4001},
+    {host: '127.0.0.1', port: 4002}
 ];
 
 //
@@ -12,15 +12,15 @@ var cluster = [
 // variables.
 //
 var single = new nconf.Provider({
-  env: true,
-  argv: true,
-  store: {
-    type: 'etcd',
-    key: 'databases/db1', // the etcd path
-    cluster: cluster, // at least one ip addess and port of a etcd node
-    readOnly: false, // is true by default
-    sync: true // is true by default
-  }
+    env: true,
+    argv: true,
+    store: {
+        type: 'etcd',
+        key: 'databases/db1', // the etcd path
+        cluster: cluster, // at least one ip addess and port of a etcd node
+        readOnly: false, // is true by default
+        sync: true // is true by default
+    }
 });
 
 // Assuming that under the key 'databases/db1' etcd stores something like:
@@ -47,10 +47,10 @@ console.log(single.get('db1:host'));
 // representing `user`(via etcd) and `global`(via file) configuration values.
 
 var multiple = new nconf.Provider({
-  stores: [
-    { name: 'user', type: 'etcd', key: 'databases/db1', cluster: cluster},
-    { name: 'global', type: 'file', file: path.join(__dirname, 'global-config.json') }
-  ]
+    stores: [
+        {name: 'user', type: 'etcd', key: 'databases/db1', cluster: cluster},
+        {name: 'global', type: 'file', file: path.join(__dirname, 'global-config.json')}
+    ]
 });
 
 // Assuming that under the key 'databases/db1' etcd stores something like:
@@ -80,33 +80,33 @@ console.log(multiple.get('db1'));
 // Setup nconf to use etcd stores and set a couple of values;
 //
 nconf.etcd('A', {key: 'databases/db1', cluster: cluster, readOnly: false})
-      .etcd('B', {key: 'databases/db2', cluster: cluster, readOnly: false})
+    .etcd('B', {key: 'databases/db2', cluster: cluster, readOnly: false});
 
 nconf.set('db2:host', '10.0.10.18'); // this will be set and later saved in A and B
-nconf.set('A','db1:port', 3007);  // this will be set and later saved in A
+nconf.set('A', 'db1:port', 3007);  // this will be set and later saved in A
 
 //
 // Save the configuration object on etcd
 //
-nconf.save()
+nconf.save();
 
 //
 // Setup nconf to use etcd store and allow the store to keep synced with etcd.
 //
-nconf.etcd('A', {key: 'databases/db1', cluster: cluster, sync: true})
+nconf.etcd('A', {key: 'databases/db1', cluster: cluster, sync: true});
 
 //
 // Observe the configuration object
 //
-nconf.watch().on('change', function(obj){
-  // Assuming something changed etcd that is stored under the key 'databases/db1'.
-  // Considering the hierarchy nconf.get() will deliver the latest configuration.
-  // This is just to inform the app about something changed.
-  console.log(obj);
-  // obj will be like:
-  // { store: 'A',
-  //   data: { 'the updated data from this store' }
-  // }
+nconf.watch().on('change', function (obj) {
+    // Assuming something changed etcd that is stored under the key 'databases/db1'.
+    // Considering the hierarchy nconf.get() will deliver the latest configuration.
+    // This is just to inform the app about something changed.
+    console.log(obj);
+    // obj will be like:
+    // { store: 'A',
+    //   data: { 'the updated data from this store' }
+    // }
 });
 
 

@@ -5,7 +5,7 @@
  * (C) 2012, Michael Hart
  *
  */
- 
+
 var nconf = require('../../../lib/nconf').env('_');
 
 process.stdout.write(nconf.get('SOME:THING'));

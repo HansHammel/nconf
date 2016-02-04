@@ -19,7 +19,7 @@ vows.describe('nconf/stores/file').addBatch({
             topic: function () {
                 var filePath = path.join(__dirname, '..', 'fixtures', 'store.json');
                 fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-                this.store = store = new nconf.File({ file: filePath });
+                this.store = store = new nconf.File({file: filePath});
                 return null;
             },
             "the load() method": {
@@ -35,7 +35,7 @@ vows.describe('nconf/stores/file').addBatch({
         "with a malformed JSON file": {
             topic: function () {
                 var filePath = path.join(__dirname, '..', 'fixtures', 'malformed.json');
-                this.store = new nconf.File({ file: filePath });
+                this.store = new nconf.File({file: filePath});
                 return null;
             },
             "the load() method with a malformed JSON config file": {
@@ -51,7 +51,7 @@ vows.describe('nconf/stores/file').addBatch({
         "with a valid UTF8 JSON file that contains a BOM": {
             topic: function () {
                 var filePath = path.join(__dirname, '..', 'fixtures', 'bom.json');
-                this.store = store = new nconf.File({ file: filePath });
+                this.store = store = new nconf.File({file: filePath});
                 return null;
             },
             "the load() method": {
@@ -75,7 +75,7 @@ vows.describe('nconf/stores/file').addBatch({
         "with a valid UTF8 JSON file that contains no BOM": {
             topic: function () {
                 var filePath = path.join(__dirname, '..', 'fixtures', 'no-bom.json');
-                this.store = store = new nconf.File({ file: filePath });
+                this.store = store = new nconf.File({file: filePath});
                 return null;
             },
             "the load() method": {
@@ -101,7 +101,7 @@ vows.describe('nconf/stores/file').addBatch({
     "When using the nconf file store": {
         topic: function () {
             var tmpPath = path.join(__dirname, '..', 'fixtures', 'tmp.json');
-            return new nconf.File({ file: tmpPath });
+            return new nconf.File({file: tmpPath});
         },
         "the save() method": {
             topic: function (tmpStore) {
@@ -131,7 +131,7 @@ vows.describe('nconf/stores/file').addBatch({
     "When using the nconf file store": {
         topic: function () {
             var tmpPath = path.join(__dirname, '..', 'fixtures', 'tmp.json');
-            return new nconf.File({ file: tmpPath });
+            return new nconf.File({file: tmpPath});
         },
         "the saveSync() method": {
             topic: function (tmpStore) {

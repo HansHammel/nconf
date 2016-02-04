@@ -5,13 +5,13 @@
  * (C) 2011, Sander Tolsma
  *
  */
- 
+
 var path = require('path'),
     nconf = require('../../../lib/nconf');
 
 nconf.argv();
 nconf.add('file', {
-  file: path.join(__dirname, '../hierarchy/hierarchical.json')
+    file: path.join(__dirname, '../hierarchy/hierarchical.json')
 });
 
 process.stdout.write(nconf.get('something') || 'undefined');

@@ -4,7 +4,7 @@
  * (C) 2011, Nodejitsu Inc.
  *
  */
- 
+
 var fs = require('fs'),
     path = require('path'),
     nconf = require('../../../lib/nconf');
@@ -16,8 +16,8 @@ var fs = require('fs'),
 //   3. A file located at 'path/to/config.json'
 //
 nconf.argv()
-     .env()
-     .file({ file: path.join(__dirname, '..', 'load-save.json') });
+    .env()
+    .file({file: path.join(__dirname, '..', 'load-save.json')});
 
 //
 // Set a few variables on `nconf`.
