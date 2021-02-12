@@ -1,11 +1,23 @@
 language: node_js
+
+branches:
+  only:
+    - master
+    - /^greenkeeper-.*$/
+    - /^greenkeeper/.*$/
+
 node_js:
-  - 0.8
-  - 0.10
-  - 0.11
+  - 12
+  - 13
+  - 14
+  - 15
+  - lts/*
+  - node
 
-notifications:
-  email:
-    - travis@nodejitsu.com
-  irc: "irc.freenode.org#nodejitsu"
+os:
+  - windows
+  - linux
+  - osx
 
+env:
+  - NODE_ENV=testing
